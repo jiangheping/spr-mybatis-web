@@ -1,0 +1,4 @@
+1、项目启动了默认直接访问index.jsp(loclhost:8080,idea/tomcat配置的);
+2、http://localhost:8080/hello
+    -- >通过demo.controller.HelloController.sayHello访问到hello.jsp页面，测试mybatis和springMVC框架是否调通；
+3、demo01.MybatisExample -->构建SessionFactory的两种方式（xml方式和硬代码）；
