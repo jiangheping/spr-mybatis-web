@@ -1,4 +1,37 @@
 1、项目启动了默认直接访问index.jsp(loclhost:8080,idea/tomcat配置的);
+   这个项目走的是Spring+mybatis,首先加载的是applicationContext-datasource.xml文件；
+   文件mybatis_config.xml对数据查询次数有影响。
+   因此建议java直接加载文件时走文件mybatis_config.xml，服务器启动时走applicationContext-datasource.xml；
 2、http://localhost:8080/hello
     -- >通过demo.controller.HelloController.sayHello访问到hello.jsp页面，测试mybatis和springMVC框架是否调通；
 3、demo01.MybatisExample -->构建SessionFactory的两种方式（xml方式和硬代码）；
+4、在SqlSession未关闭之前，如果对于同样条件进行重复查询，此时采用的是local session cache，而不是配置上的cache。
+5、typeAlias在config文件中配置，有包和具体类两种配置方式，然后在xml文件sql中就可以直接使用resultType或者paramerType引用该类别名；
+6、demo01.InsertSexEnum：枚举类型typeHandler
+    自定义枚举类的typehandler，只需要写个typeHandler类实现TypeHandler，然后引入该类就可以了；
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,9 +1,13 @@
 package demo.entity;
 
+import demo.enumPackage.Sex;
+
 public class Person {
     private Integer id;
 
     private String name;
+
+    private Sex sex;
 
     private String description;
 
@@ -21,6 +25,14 @@ public class Person {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
     }
 
     public String getDescription() {

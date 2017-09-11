@@ -30,7 +30,8 @@ public class MybatisExample {
         System.out.println("name--->" + person.getName());
     }
 
-
+    //org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): demo.dao.PersonMapper.selectByPrimaryKey
+    //如果报这个异常，时因为sqlSessionFactory中的mapper没有注解相应查询方法
     @Test
     public void createSessionFactoryByCode() {
         SqlSessionFactory sqlSessionFactory = MybatisUtil.getSqlSessionFactoryByCode();
