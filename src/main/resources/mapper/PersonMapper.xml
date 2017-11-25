@@ -21,7 +21,7 @@
     delete from person
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="demo.entity.Person" >
+  <insert id="insert" parameterType="demo.entity.Person">
     insert into person (id, name, sex, description
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}, #{description,jdbcType=VARCHAR}
