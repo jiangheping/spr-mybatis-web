@@ -9,17 +9,4 @@
           p:maxSpeed="200"
     />
 
-    <bean id="customAutowireConfigurer"
-          class="org.springframework.beans.factory.annotation.CustomAutowireConfigurer">
-        <property name="customQualifierTypes">
-            <set>
-                <value>test.FineQualifier</value>
-            </set>
-        </property>
-    </bean>
-    <!-- bean id="car" class="com.smart.beanfactory.Car"
-    init-method="myInit"
-    destroy-method="myDestory"
-    p:brand="红旗CA72"/ -->
-
 </beans>
