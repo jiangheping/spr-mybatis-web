@@ -6,6 +6,10 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -42,5 +46,23 @@ public class BeanFactoryTest {
         System.out.println(car==car2);//true,bean定义的默认是单例
 
         //获取ApplicationContext用ClassPathXmlApplicationContext
+    }
+
+    //获取 ApplicationContext 的三种方式
+    @Test
+    public void getBeanByApplicationContext(){
+        //配置文件放在类路径上，则用ClassPathXmlApplicationContext
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans/beans.xml");
+        Car car = (Car)applicationContext.getBean("car");
+        car.introduce();
+
+        //配置文件放在文件系统下，则用FileSystemXmlApplicationContext
+//        ApplicationContext ac = new FileSystemXmlApplicationContext("beans/beans.xml");
+//        Car car2 = (Car)ac.getBean("car");
+//        car2.introduce();
+
+        //@Configuration注解获取ApplicaitonContext方式
+//        ApplicationContext ac = new AnnotationConfigApplicationContext(Car.class);
+//        Car car2 = (Car)ac.getBean("car");
     }
 }
