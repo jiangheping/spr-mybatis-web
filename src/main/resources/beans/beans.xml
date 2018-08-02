@@ -9,4 +9,11 @@
           p:maxSpeed="200"
     />
 
+    <bean id="person" class="demo02.bean.Person"
+          p:address="上海市"
+          p:age="25"
+          init-method="myInit"
+          destroy-method="myDestroy"
+    />
+
 </beans>
