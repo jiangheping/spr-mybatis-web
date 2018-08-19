@@ -24,17 +24,17 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
     }
 
     public void setAge(int age) {
-        System.out.println("调用了setAge方法设置了属性");
+        System.out.println("调用了setAge方法设置了属性，"+age);
         this.age = age;
     }
 
     public void setName(String name) {
-        System.out.println("调用了setName方法设置了属性");
+        System.out.println("调用了setName方法设置了属性，"+name);
         this.name = name;
     }
 
     public void setAddress(String address) {
-        System.out.println("调用了setAddress方法设置了属性");
+        System.out.println("调用了setAddress方法设置了属性，"+address);
         this.address = address;
     }
 

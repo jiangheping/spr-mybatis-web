@@ -42,5 +42,4 @@ public class BeanFactoryLifeCycleMain {
         ((DefaultListableBeanFactory) beanFactory).destroySingletons();
     }
 
-
 }

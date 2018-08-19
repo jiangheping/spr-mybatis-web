@@ -9,11 +9,23 @@
           p:maxSpeed="200"
     />
 
+    <!--1、注册Bean-->
     <bean id="person" class="demo02.bean.Person"
           p:address="上海市"
           p:age="25"
           init-method="myInit"
           destroy-method="myDestroy"
     />
+
+    <!--下面注册bean后处理器是为了演示ApplicationContext bean生命周期的。-->
+    <!--ApplicationContext和BeanFactory另一个最大的不同之处在于：
+    前者会利用Java反射机制自动识别出配置文件中定义的BeanPostProcessor、InstantiationAwareBeanPostProcessor和BeanFactoryPostProcessor，并自动将它们注册到应用上下文中；
+    而后者需要在代码中通过手工调用addBeanPostProcessor()方法进行注册。-->
+    <!--2、注册Bean后处理器-->
+    <bean id="myBeanPostProcessor"
+          class="demo02.BeanFactoryLifeCycle.MyBeanPostProcessor"/>
+    <!--3、注册Bean后处理器-->
+    <bean id="myBeanFactoryPostProcessor"
+          class="demo02.BeanFactoryLifeCycle.MyBeanFactoryPostProcessor"/>
 
 </beans>
