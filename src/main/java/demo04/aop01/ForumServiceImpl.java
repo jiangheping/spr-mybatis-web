@@ -13,13 +13,13 @@ public class ForumServiceImpl implements ForumService{
     }
 
     public void removeForum(int forumId) {
-		PerformanceMonitor.begin("demo04.aop01.removeForum");
+		//PerformanceMonitor.begin("demo04.aop01.removeForum");
         System.out.println("模拟删除Forum记录:"+forumId);
         try {
             Thread.currentThread().sleep(40);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-		PerformanceMonitor.end();
+		//PerformanceMonitor.end();
     }
 }
