@@ -28,4 +28,13 @@
     <bean id="myBeanFactoryPostProcessor"
           class="demo02.BeanFactoryLifeCycle.MyBeanFactoryPostProcessor"/>
 
+    <!--通过配置文件来实现Spring的前置增强-->
+    <bean id="gerrtingBefore" class=" demo04.advance.GreetingBeforeAdvice"/>
+    <bean id="target" class="demo04.advance.NativeWaiter"/>
+    <bean id="waiter" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:proxyInterfaces="demo04.advance.Waiter"
+          p:interceptorNames="gerrtingBefore"
+          p:target-ref="target"
+    />
+
 </beans>
