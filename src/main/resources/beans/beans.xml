@@ -37,4 +37,79 @@
           p:target-ref="target"
     />
 
+    <!-- 配置切面：静态方法匹配切面 start -->
+    <!-- Waiter目标类 -->
+    <bean id="waiterTarget" class="demo04.advisor.Waiter"/>
+    <!-- Seller目标类 -->
+    <bean id="sellerTarget" class="demo04.advisor.Seller"/>
+
+    <!-- 前置增强 -->
+    <bean id="greetBeforeAdvice" class="demo04.advisor.GreetBeforeAdivce"/>
+
+    <!-- 切面 -->
+    <bean id="greetAdvicesor" class="demo04.advisor.GreetingAdvisor"
+          p:advice-ref="greetBeforeAdvice"/> <!-- 向切面注入一个前置增强 -->
+
+    <!-- 通过父bean,配置公共的信息 -->
+    <bean id="parent" abstract="true"
+          class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="greetAdvicesor"
+          p:proxyTargetClass="true"/>
+
+    <!-- waiter代理 -->
+    <bean id="waiter2" parent="parent" p:target-ref="waiterTarget"/>
+    <!-- seller代理 -->
+    <bean id="seller" parent="parent" p:target-ref="sellerTarget"/>
+    <!-- 配置切面：静态方法匹配切面 end -->
+
+    <!-- 配置切面：动态态方法匹配切面 start -->
+    <bean id="dynamicAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut"> <!--① 注入动态切点-->
+            <bean class="demo04.advisor.GreetingDynamicPointcut"/>
+        </property>
+        <property name="advice"><!--② 注入增强-->
+            <bean class="demo04.advisor.GreetBeforeAdivce"/>
+        </property>
+    </bean>
+
+    <bean id="waiter3" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:target-ref="waiterTarget"
+          p:interceptorNames="dynamicAdvisor"
+          p:proxyTargetClass="true" />
+    <!-- 配置切面：动态态方法匹配切面 end -->
+
+    <!-- 配置切面：流程切面配置 start -->
+    <!--切点配置-->
+    <bean id="controlFlowPointcut" class="org.springframework.aop.support.ControlFlowPointcut">
+        <!--指定一个类作为流程切点-->
+        <constructor-arg type="java.lang.Class" value="demo04.advisor.WaiterDelegate"/>
+        <!--指定一个方法作为流程切点-->
+        <constructor-arg type="java.lang.String" value="waiterService"/>
+    </bean>
+    <!--配置增强-->
+    <bean id="controllFlowAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"
+          p:pointcut-ref="controlFlowPointcut"
+          p:advice-ref="greetBeforeAdvice"/>
+    <!--配置代理类-->
+    <bean id="waiter4" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:target-ref="waiterTarget"
+          p:interceptorNames="controllFlowAdvisor"
+          p:proxyTargetClass="true">
+    </bean>
+    <!-- 配置切面：流程切面配置 end -->
+
+    <!-- 配置切面：复合切点切面配置 start -->
+    <bean id="gcp" class="demo04.advisor.GreetingComposablePointcut" />
+    <!-- 引用gcp.getIntersectionPointcut()方法所返回的复合切点 -->
+    <bean id="composableAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"
+          p:pointcut="#{gcp.intersectionPointcut}"
+          p:advice-ref="greetBeforeAdvice" />
+
+    <!-- p:interceptorNames指定使用的复合切面 -->
+    <bean id="waiter5" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="composableAdvisor"
+          p:target-ref="waiterTarget"
+          p:proxyTargetClass="true" />
+    <!-- 配置切面：复合切点切面配置 end -->
+
 </beans>
