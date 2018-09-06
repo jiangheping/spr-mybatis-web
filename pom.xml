@@ -177,7 +177,5 @@
         </dependency>
 
     </dependencies>
-	<build>
-		<finalName>spr-mybatis-web</finalName>
-	</build>
+
 </project>

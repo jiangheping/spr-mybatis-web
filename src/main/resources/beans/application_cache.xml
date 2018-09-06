@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/cache
+           http://www.springframework.org/schema/cache/spring-cache.xsd">
+    <context:component-scan base-package="demo06"/>
+    <cache:annotation-driven/>
+    <!-- spring缓存配置
+    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+        <property name="caches">
+            <set>
+                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
+                    <property name="name" value="default"/>
+                </bean>
+                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
+                    <property name="name" value="personCache"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
+    -->
+    <!--自定义缓存-->
+    <bean id="cacheManager" class="demo06.MyCacheManager">
+        <property name="caches">
+            <set>
+                <bean class="demo06.MyCache">
+                    <property name="name" value="personCache"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
+
+</beans>

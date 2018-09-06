@@ -10,7 +10,7 @@ public interface Job {
     /**
      * 执行作业
      *
-     * @param context 分片上下文
+     * @param context 分片上下文信息
      */
     void execute(Map<String, Object> context);
 }
