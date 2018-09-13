@@ -25,8 +25,7 @@ public class SpringDataCacheManager extends RedisCacheManager implements Applica
     private ApplicationContext applicationContext;
     private final Map<String, CacheDefinition> caches = new ConcurrentReferenceHashMap<>();
     private int defaultDuration = 60;//默认缓存60秒
-    //private String servers = "121.40.181.25^7100^Madailicai123!@#test,121.40.181.25^6379^Madailicai123!@#test";
-    private String servers = "121.40.181.25^6379^Madailicai123!@#test";
+    private String servers = "127.0.0.1^7100^password,127.0.0.1^6379^password";
 
     //InitializingBean的实现方法
     @Override
