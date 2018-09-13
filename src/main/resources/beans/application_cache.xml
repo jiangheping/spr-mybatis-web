@@ -10,7 +10,7 @@
            http://www.springframework.org/schema/cache/spring-cache.xsd">
     <context:component-scan base-package="demo06"/>
     <cache:annotation-driven/>
-    <!-- spring缓存配置
+    <!-- spring缓存配置 -->
     <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
         <property name="caches">
             <set>
@@ -23,8 +23,8 @@
             </set>
         </property>
     </bean>
-    -->
-    <!--自定义缓存-->
+
+    <!--自定义缓存
     <bean id="cacheManager" class="demo06.MyCacheManager">
         <property name="caches">
             <set>
@@ -34,5 +34,5 @@
             </set>
         </property>
     </bean>
-
+-->
 </beans>

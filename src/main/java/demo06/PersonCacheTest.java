@@ -17,11 +17,11 @@ public class PersonCacheTest {
 
     @Test
     public void testGetPersonByName() {
-        System.out.println("第一次查询………………");
+        System.out.println("第一次查询张三………………");
         personService.getPersonByName("张三");
-        System.out.println("第二次查询………………");
+        System.out.println("第二次查询李四………………");
         personService.getPersonByName("李四");
-        System.out.println("第三次查询………………");
+        System.out.println("第三次查询张三………………");
         personService.getPersonByName("张三");
     }
 }
