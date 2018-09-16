@@ -8,9 +8,9 @@ import redis.clients.jedis.JedisShardInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RedisCacheManager {
+public class RedisServersManager {
 
-    private Logger log = Logger.getLogger(RedisCacheManager.class);
+    private Logger log = Logger.getLogger(RedisServersManager.class);
     //jedis连接分片信息
     private List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
 
@@ -32,7 +32,6 @@ public class RedisCacheManager {
     }
 
     private JedisShardInfo shardInfo(String server) {
-        //server:120.0.0.1//6379,具体待定
         String[] texts = server.split("\\^");
         JedisShardInfo shard = new JedisShardInfo(texts[0], Integer.parseInt(texts[1]), 1000);
         if (texts.length == 3) {

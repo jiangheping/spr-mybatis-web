@@ -1,11 +1,11 @@
 package demo06.cache;
 
 public class CacheDefinition {
-    private String name;
+    private String name;//缓存名称
 
-    private int seconds;
+    private int duration;//缓存有效时间
 
-    private String tag;
+    private String tag;//缓存标签
 
     public String getName() {
         return name;
@@ -16,12 +16,12 @@ public class CacheDefinition {
         return this;
     }
 
-    public int getSeconds() {
-        return seconds;
+    public int getDuration() {
+        return duration;
     }
 
-    public CacheDefinition setSeconds(int seconds) {
-        this.seconds = seconds;
+    public CacheDefinition setDuration(int duration) {
+        this.duration = duration;
         return this;
     }
 

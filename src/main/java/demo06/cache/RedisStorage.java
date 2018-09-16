@@ -21,9 +21,7 @@ public class RedisStorage<ResourceType extends BinaryJedisCommands> implements S
     //序列化默认为jdk序列化，也可以选择为hessian2／kryo
     private Serializer<Object> serializer = new DefaultSerializer();
     private Deserializer<Object> deserializer = new DefaultDeserializer();
-    private final static String CACHE_TAG_PREFIX = "aaaaaaTAG_DATA";
     private Logger log = Logger.getLogger(RedisStorage.class);
-
 
     private final Pool<ResourceType> pool;
     private final List<HostAndPort> hostAndPorts;

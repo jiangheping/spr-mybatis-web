@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.springframework.core.annotation.AnnotationUtils.findAnnotation;
 
-public class SpringDataCacheManager extends RedisCacheManager implements ApplicationContextAware, InitializingBean, CacheManager {
+public class SpringDataCacheManager extends RedisServersManager implements ApplicationContextAware, InitializingBean, CacheManager {
 
     private ApplicationContext applicationContext;
     private final Map<String, CacheDefinition> caches = new ConcurrentReferenceHashMap<>();
@@ -53,7 +53,7 @@ public class SpringDataCacheManager extends RedisCacheManager implements Applica
                     for (String cacheName : cacheNames) {
                         CacheDefinition cacheDefinition = new CacheDefinition()
                                 .setName(cacheName)
-                                .setSeconds(cacheMapping.duration())
+                                .setDuration(cacheMapping.duration())
                                 .setTag(cacheMapping.tag());
                         caches.put(cacheName, cacheDefinition);
                     }
@@ -86,12 +86,12 @@ public class SpringDataCacheManager extends RedisCacheManager implements Applica
         return cacheable.value();
     }
 
-    //CacheManager的实现方法
+    //CacheManager的实现方法,该方法每次调用cache的get方法之前会调用一次
     @Override
     public Cache getCache(String name) {
         CacheDefinition cacheDefinition = caches.get(name);
         if (null != cacheDefinition) {
-            return new RedisCache<>(newStorage(), name, cacheDefinition.getTag(), cacheDefinition.getSeconds(), TimeUnit.SECONDS);
+            return new RedisCache<>(newStorage(), name, cacheDefinition.getTag(), cacheDefinition.getDuration(), TimeUnit.SECONDS);
         }
         return new RedisCache<>(newStorage(), name, defaultDuration, TimeUnit.SECONDS);
     }
